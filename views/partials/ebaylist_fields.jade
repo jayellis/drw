@@ -1,0 +1,60 @@
+fieldset
+  legend Details
+  input(type='text', name='item[Title]', value= item.Title || '', placeholder='Title')
+  textarea(name='item[Description]', placeholder='Text')= item.text || item.Description
+  input(type='text', name='item[Quantity]', value= item.Quantity || '1', placeholder='Quantity - eg 1')
+
+fieldset
+  legend Payment
+  input(type='text', name='item[StartPrice]', value= item.StartPrice || '', placeholder='Start Price')
+  input(type='text', name='item[BuyItNowPrice]', value= item.BuyItNowPrice || '', placeholder='Buy it now (Optional)')
+  select(name='item[PaymentMethods]')
+    option(value='') Payment Method
+    each paymentOption in ebayDetails.PaymentOptionDetails
+      option(value= paymentOption.PaymentOption)= paymentOption.Description
+  input(type='text', name='item[DispatchTimeMax]', value=item.DispatchTimeMax || '', placeholder='Maximum Dispatch (Days)')
+  select(name='item[ListingType]')
+    option(value='FixedPriceItem') Fixed Price Item
+    option(value='Auction') Auction
+    option(value='Chinese') Chinese
+    option(value='AdType') AdType
+  select(name='item[ListingDuration]')
+    option(value='GTC') Until Cancelled (Fixed price listings only)
+    option(value='Days_3') 3 Days
+    option(value='Days_5') 5 Days
+    option(value='Days_7') 7 Days
+    option(value='Days_10') 10 Days
+    option(value='Days_14') 14 Days
+    option(value='Days_30') 30 Days
+    option(value='Days_60') 60 Days
+    option(value='Days_120') 120 Days
+
+fieldset
+  legend Category
+  select(name='')#parcat
+    option(value='') Select Category
+    each category in categories.Category
+      option(value= category.CategoryID)= category.CategoryName
+  select(name='item[PrimaryCategory[CategoryID]')#subcat
+
+fieldset
+  legend Shipping
+  input(type='hidden', name='item[ShippingDetails[ShippingServiceOptions[ShippingServicePriority]', value='1')
+  input(type='hidden', name='item[ShippingDetails[ShippingServiceOptions[ShippingServiceAdditionalCost]', value='1')
+  select(name='item[ShippingDetails[ShippingServiceOptions[ShippingService]')
+    option(value='') Select Shipping Method
+    each shipping in ebayDetails.ShippingServiceDetails
+      option(value= shipping.ShippingService)= shipping.Description
+  input(type='text', name='item[ShippingDetails[ShippingServiceOptions[ShippingServiceCost]', placeholder='Shipping cost')
+
+fieldset
+  legend Images
+  ul#sortable
+    if 'undefined' !== typeof item._media
+      each media in item._media
+        li.image-wrapper.ui-state-default
+          span()
+            input(type='checkbox', name='item[_media]', value= src='http://20cent.s3.amazonaws.com/images/thumbs/' + media.filename, checked)
+          img(src='http://20cent.s3.amazonaws.com/images/thumbs/' + media.filename)
+
+

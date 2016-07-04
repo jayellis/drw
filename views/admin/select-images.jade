@@ -1,0 +1,22 @@
+extends ../layout-admin
+
+block head
+
+block content
+  h1= title
+  form(action='/admin/media/' + id, method='get')
+    input(type='search', name='keyword')
+    input(type='submit', value='search')
+  form(action='/admin/portfolio/images/' + portfolio, method='POST')
+    .image-list
+      each image in media
+        .image-wrapper
+          input(type='checkbox', name='image[]', value= image._id)
+          img(src='http://drwagner.s3.amazonaws.com/images/thumbs/' + image.filename)
+    input(type='submit', value='Add')
+
+block scripts
+
+
+
+

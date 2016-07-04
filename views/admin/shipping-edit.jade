@@ -1,0 +1,40 @@
+extends ../layout-admin
+
+block head
+  link(rel='stylesheet', href='#{assetUrl}/stylesheets/Aristo-jQuery-UI-Theme/css/Aristo/Aristo.css')
+  link(rel='stylesheet', href='#{assetUrl}/stylesheets/jTPS.css')
+  script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js')
+  script(type='text/javascript', src='#{assetUrl}/javascripts/jTPS.js')
+block content
+  h1= title
+  form(action='/admin/shipping/edit/' + shipping._id, method='POST')
+    include ../partials/shipping_fields
+    input(type='submit', value='Edit shipping service')
+  h2 Options
+  table#sortableTable
+    thead
+      tr
+        th(sort='Option') Option
+        th(sort='Description') Description
+        th(sort='Cost') Cost
+    tbody
+      each shipper in shipping._serviceOptions
+        tr
+          td 
+            a(href='/admin/shipping/edit/' + shipper._id)= shipper.option
+          td 
+            a(href='/admin/shipping/edit/' + shipper._id)= shipper.description
+          td
+            a(href='/admin/shipping/edit/' + shipper._id)= shipper.defaultCost
+    tfoot.nav
+      tr
+        td(colspan=3)
+          .pagination
+          .paginationTitle
+          .selectPerPage
+          .status
+
+  a(href='/admin/shipping/option/' + shipping._id).btn Add option
+
+block scripts
+  script(type='text/javascript', src='#{assetUrl}/javascripts/jtps_init.js')

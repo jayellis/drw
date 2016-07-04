@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title= 'Dr Wagner Wolfenstein\'s Emporium of Oddities, Natural History and Exotica' + title
+    link(rel='stylesheet', href='/stylesheets/admin.css')
+    script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
+    block head
+  body
+    != flash 
+    include partials/admin-nav
+    block content
+    block scripts
+    script(type='text/javascript', src='/javascripts/destroy.js')
+    script(type='text/javascript', src='/javascripts/animate_alert.js')

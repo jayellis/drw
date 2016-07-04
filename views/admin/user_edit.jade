@@ -1,0 +1,23 @@
+extends ../layout-admin
+
+block head
+  link(rel='stylesheet', href='#{assetUrl}/stylesheets/Aristo-jQuery-UI-Theme/css/Aristo/Aristo.css')
+  link(rel='stylesheet', href='#{assetUrl}/stylesheets/jTPS.css')
+  script(type='text/javascript', src='#{assetUrl}/javascripts/jTPS.js')
+  meta(name="keywords", content="")
+block content
+  h1= title
+  //-a(href='/admin/users/' + user._id).btn.destroy Remove User
+  form(action='/admin/users/' + user.id, method='POST')
+    input(type='hidden', name='_method', value='PUT')
+    include ../partials/user_fields
+    input(type='password', name='password', placeholder='Leave clear unless a change of password is required')
+    select(name='user[level]')
+      option(value='user', selected= (user.level=='user')) User
+      option(value='admin', selected= (user.level=='admin')) Admin
+    select(name='user[state]')
+      option(value='active', selected= (user.state=='active')) Active
+      option(value='suspended', selected= (user.state=='suspended')) Suspended
+    input(type='submit', value='Edit User')
+block scripts
+  script(type='text/javascript', src='#{assetUrl}/javascripts/jtps_init.js')

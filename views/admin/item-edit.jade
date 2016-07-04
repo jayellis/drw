@@ -1,0 +1,73 @@
+extends ../layout-admin
+
+block head
+  link(rel='stylesheet', href='#{assetUrl}/stylesheets/Aristo-jQuery-UI-Theme/css/Aristo/Aristo.css')
+  script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js')
+  script(type='text/javascript', src='#{assetUrl}/javascripts/tinymce/tinymce.min.js')
+  link(rel='stylesheet', href='#{assetUrl}/stylesheets/jquery-te-1.4.0.css') 
+  script(type='text/javascript', src='#{assetUrl}/javascripts/jQuery-TE_v.1.4.0/jquery-te-1.4.0.min.js')
+  script()
+    | tinymce.init({
+    |   selector: "textarea",
+    |   plugins: 'link, code',
+    |   menubar: false,
+    |   toolbar: 'undo redo | styleselect | removeformat | bold italic | link | unlink | code',
+    |   style_formats: [
+    |    {title: 'Normal', block: 'p'},
+    |    {title: 'Bold text', inline: 'b'},
+    |    {title: 'B head', inline: 'span', classes: 'bhead'},
+    |    {title: 'Call to action', inline: 'span', classes: 'calltoaction'},
+    |    {title: 'Interview - bold First', block: 'p', classes: 'interview1'},
+    |   ]
+    | });
+    
+block content
+  form(action='/admin/items/' + item._id, method='POST')
+    h1= title
+    input(type='hidden', name='_method', value='PUT')
+    if item._reservation
+      fieldset#reservation
+        h2 Reservation
+        p #{item._reservation.displayName}
+          | #{item._reservation.email}
+    include ../partials/item_fields
+    select(name='item[state]')
+      option(value='draft', selected= (item.state == 'draft' || '')) Draft
+      option(value='sale', selected= (item.state == 'sale')) For Sale
+      option(value='reserve', selected= (item.state == 'reserve')) To Reserve
+      option(value='archive', selected= (item.state == 'archive')) For Sale
+      option(value='sold', selected= (item.state == 'sold')) Sold
+      option(value='reserved', selected= (item.state == 'reserved')) Reserved
+    fieldset
+      legend delivery
+      ul
+        each deliver, index in item.delivery
+          li
+            input(type='checkbox', name='item[add_delivery['+ index + '[checked]', value= 1, checked='checked')
+            p #{deliver.option}
+            input(type='text', name='item[add_delivery['+ index +'[cost]', value= deliver.cost)
+            input(type='hidden', name='item[add_delivery['+ index +'[option]', value= deliver.option)
+      ul
+        each shipper in shipping
+          each option, key in shipper._serviceOptions
+            li 
+              input(type='checkbox', name='item[new_delivery['+ key +'[checked]', value= 1)
+              p #{shipper.service}: #{option.option}
+              input(type='text', name='item[new_delivery['+ key +'[cost]', value= option.defaultCost)
+              input(type='hidden', name='item[new_delivery['+ key +'[option]', value= shipper.service + ': ' + option.option)
+
+    fieldset
+      legend Images
+      ul#sortable
+        if item._media.length > 0
+          each media in item._media
+            li.image-wrapper.ui-state-default
+              span()
+              input(type='checkbox', name='item[_media[]', value= media._id, checked)
+              img(src='http://drwagner.s3.amazonaws.com/images/thumbs/' + media.filename)
+        else
+          p No images 
+    input(type='submit', name='to', value='Add Images')
+    input(type='submit', name='to', value='Edit Item')
+block scripts
+  script(type='text/javascript', src='#{assetUrl}/javascripts/sortable_init.js')

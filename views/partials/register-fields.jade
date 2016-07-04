@@ -1,0 +1,20 @@
+form(action='/register', method='POST')#register
+  h3 Register
+  input(type='text', name='user[fname]', value= user.fname || '', placeholder='First Name')
+  input(type='text', name='user[lname]', value= user.lname || '', placeholder='Last Name')
+  input(type='email', name='user[email]', value= user.email || '', placeholder='email' disabled= (user.email))
+  input(type='password', name='user[password]', value= user.password || '', placeholder='Password')
+  input(type='password', name='password',  placeholder='Verify Password')
+  input(type='checkbox', name='user[third_party]', value='true', checked= true)
+  label Get Stinger updates, news, surveys & offers
+  input(type='submit', value='Register')
+form( action='/auth', method='POST' )#signin
+  h3 Sign In
+  input( type='text', name='user[email]', value= user.email || '', placeholder='Email')
+  input( type='password', name='user[password]', value= user.password || '', placeholder='Password')
+  p &nbsp;
+  label
+    a(href='/user/password') I have forgotten my password
+  p &nbsp;
+  input( type='submit', value='Sign in' )
+  a(href='/auth/facebook').btn.facebookBtn Or sign in/register with facebook

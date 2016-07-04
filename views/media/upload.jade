@@ -1,0 +1,16 @@
+extends ../layout-admin
+
+block head
+block content
+  h1= title
+  form(action='/admin/media', method='POST', enctype="multipart/form-data")#form-upload
+    p
+      input( type='file', name='media[file]', multiple="") 
+    p
+      label Keywords
+      input( type='text', name='media[key_words]' )
+      p.fly List keywords as comma seperated tags for search
+    p
+      input( type='submit', value='Upload File' )
+
+block scripts

@@ -1,0 +1,11 @@
+extends ../layout-admin
+
+block head
+block content
+  h1= title
+  form(action='/admin/shipping/new', method='POST')
+    include ../partials/shipping_fields
+    input(type='submit', value='Add shipping service')
+block scripts
+  script( type='text/javascript', src='/javascripts/duplicate.js' )
+

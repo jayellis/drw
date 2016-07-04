@@ -1,0 +1,38 @@
+extends ../layout-admin
+
+block head
+  link(rel='stylesheet', href='#{assetUrl}/stylesheets/Aristo-jQuery-UI-Theme/css/Aristo/Aristo.css')
+  link(rel='stylesheet', href='#{assetUrl}/stylesheets/jTPS.css')
+  script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js')
+  script(type='text/javascript', src='#{assetUrl}/javascripts/jTPS.js')
+block content
+  h1= title
+  //-a(href='/admin/shipping/new').btn New shipping
+  form(action='/admin/shipping', method='POST')
+    include ../partials/shipping_fields
+    input(type='submit', value='Add service')
+  table#sortableTable
+    thead
+      tr
+        th(sort='Service') Service
+        th(sort='Contact') Contact
+        th(sort='Tel') Telephone
+    tbody
+      each shipper in shipping
+        tr
+          td 
+            a(href='/admin/shipping/edit/' + shipper._id)= shipper.service
+          td 
+            a(href='/admin/shipping/edit/' + shipper.contact)= shipper.contact
+          td
+            a(href='/admin/shipping/edit/' + shipper.tel)= shipper.tel
+    tfoot.nav
+      tr
+        td(colspan=4)
+          .pagination
+          .paginationTitle
+          .selectPerPage
+          .status
+
+block scripts
+  script(type='text/javascript', src='#{assetUrl}/javascripts/jtps_init.js')

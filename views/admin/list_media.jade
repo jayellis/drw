@@ -1,0 +1,25 @@
+extends ../layout-admin
+
+block head
+  meta(name="keywords", content="")
+  meta(name="description", content="")
+
+block content
+  h1= title
+  form(action='/admin/media', method='get')
+    input(type='search', name='keyword')
+    input(type='submit', value='search')
+  form(action='/admin/media/delete', method='POST')
+    .image-list
+      each image in media
+        .image-wrapper
+          input(type='checkbox', name='image[]', value= image._id)
+          a(href='/admin/media/' + image._id)
+            img(src='http://drwagner.s3.amazonaws.com/images/thumbs/' + image.filename)
+    input(type='button', data-action='selectall', value='Select All').select-button
+    input(type='button', data-action='clearall', value='Clear All').select-button
+    input(type='submit', value='Delete')
+
+block scripts
+  script(type='text/javascript', src='#{assetUrl}/javascripts/select-box.js')
+

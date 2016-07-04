@@ -1,0 +1,13 @@
+extends ../layout-admin
+
+block head
+block content
+  h1= title
+  form(action='/admin/users/new', method='POST')
+    include ../partials/user_fields
+    input(type='password', name='password',  placeholder='Verify Password')
+    select(name='user[level]')
+      option(value='user') User
+      option(value='admin') Admin
+    input(type='submit', value='Add user')
+

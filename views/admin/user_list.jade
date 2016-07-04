@@ -1,0 +1,38 @@
+extends ../layout-admin
+
+block head
+  link(rel='stylesheet', href='#{assetUrl}/stylesheets/Aristo-jQuery-UI-Theme/css/Aristo/Aristo.css')
+  link(rel='stylesheet', href='#{assetUrl}/stylesheets/jTPS.css')
+  script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js')
+  script(type='text/javascript', src='#{assetUrl}/javascripts/jTPS.js')
+block content
+  h1= title
+  a(href='/admin/users/new').btn New user
+  table()#sortableTable
+     thead
+        tr
+           th(sort='displayName') Name
+           th(sort='email') Email
+           th(sort='level') Level
+           th(sort='state') State
+     tbody
+        each user in users
+          tr
+            td
+              a(href='/admin/users/' + user._id)= user.displayName
+            td
+              a(href='/admin/users/' + user._id)= user.email
+            td
+              a(href='/admin/users/' + user._id)= user.level
+            td
+              a(href='/admin/users/' + user._id)= user.state
+     tfoot().nav
+        tr
+           td(colspan=4)
+              div().pagination
+              div().paginationTitle Page
+              div().selectPerPage
+              div().status
+
+block scripts
+  script(type='text/javascript', src='#{assetUrl}/javascripts/jtps_init.js')

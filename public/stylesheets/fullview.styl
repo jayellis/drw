@@ -1,0 +1,408 @@
+@import style
+
+h1
+  font-family uglyqua
+  font-size large-font
+  line-height small-font
+  text-align center
+  margin 50px 0 20px 0
+
+h2
+  font-family uglyqua
+  font-size med-font
+  line-height small-font
+  margin 0
+
+.autocomplete-suggestions
+  margin small-font 0
+  padding small-font
+  background-color second-col
+  color white
+  border-radius 3px
+
+  .autocomplete-suggestion
+    strong
+      font-bold
+
+header, #header
+  #long-header
+    position fixed
+    top 0.5em
+    left 0.5em
+    width 100%
+    height 65px
+    background-image url(/images/drw-title-long-02.png)
+    background-repeat no-repeat
+    background-position left top
+    background-size auto 100% 
+  #topnav
+    font-size 66%
+    position fixed
+    width 100%
+    top 6.5em
+    left 1em
+    font-family font-bold
+    padding 0.5em 0
+    background black
+    nav
+      ul
+        li
+          width auto
+          padding fly-font
+          float left
+          text-transform uppercase
+          //background-color prime-col*0.9
+          margin-bottom 0.2em
+        li:hover
+          background-color prime-col*0.5
+          color white
+          -webkit-transition: all 0.3s ease-in;
+        a:before,
+        .menu:before
+          width fly-font
+          text-align center
+          font-family entypo
+          font-size large-font
+          float left
+          margin-right fly-font*0.5
+        a[href='/contact']:before
+          content '\E724'
+        a[href='/about']:before
+          content '\270E'
+        a[href='/auth']:before, 
+        a[href='/admin']:before, 
+        a[href='/user']:before
+          content '\1F464'
+        .menu:before
+          content '\e005'
+        a.category:before
+          content '\1F45C'
+        .destroy
+          border none
+          color alert-error-col
+        .destroy:before
+          content ''
+          display none
+        #cart
+          position relative
+          width 18em
+          form
+            position absolute
+            display none
+            .cart_items
+              width 16em
+            input[type=submit]
+              display block
+              text-transform uppercase
+              background alert-error-col
+              width 14em
+              margin 1em 0
+            .clear
+              position relative
+              font-family font-bold
+              margin 2em 0
+            ul.cart_items
+              li
+                position relative
+                width 14em
+                padding-right 2em
+              .remove
+                position absolute
+                font-family entypo
+                font-size med-font
+                right 0
+          form:after
+            clearfix()
+        #cart:before
+          content '\E73D'
+          font-family entypo
+          width fly-font
+          text-align center
+          font-size large-font
+          float left
+          margin-right fly-font*0.5
+        #cart:hover,
+        #cart:active
+          form
+            background-color prime-col
+            display block
+        .menu
+          ul
+            position absolute
+            display none
+            padding-top 1em
+            li
+              clear both
+              padding-left 0
+        .menu:hover,
+        .menu:active
+          ul
+            display block
+
+        .bold
+          font-family font-bold
+
+.wrapper
+  width 960px
+  margin 7em auto
+  #checkout-form
+    fieldset
+      display block
+      width 48%
+      margin auto 1%
+      float left
+      clear none
+      border none
+    #checkout-cart
+      display block
+      width 100%
+      clear both
+      padding 1em
+      table
+        margin 1em 0
+        display block
+        width 100%
+        tr
+          td,
+          th
+            padding 0.5em
+            line-height med-font
+        tr:first-child
+          background white
+          color prime-col
+        tr:nth-child('even')
+          background prime-col*0.3
+
+  #hero
+    position static
+    display block
+    width 960px
+    height 300px
+  #catelogue
+    .store_item
+      position relative
+      display block
+      margin 5px 0
+      overflow hidden
+      .copyblock
+        position absolute
+        left -600px
+        top -20px
+        width 100%
+        height 100%
+        padding med-font
+        background-color rgba(0,0,0,0.5)
+        box-shadow 0 0 15px prime-col*0.6
+        input[type=submit]
+          border none
+          background-color second-col
+          font-size fly-font
+          color prime-col
+          text-shadow none
+          z-index 1000
+        .keywords
+          position absolute
+          bottom 1em
+          display block
+          clear both
+          margin small-font 0
+          li
+            font-family uglyqua
+            font-size fly-font*0.5
+            text-transform uppercase
+            float left
+            padding fly-font*0.5
+            background-color prime-col
+            color second-col
+            margin-right fly-font
+            margin-top fly-font
+            border-radius 3px
+        .keywords:after
+          clearfix()
+        h2, .price
+          font-family uglyqua
+          font-size small-font
+          line-height small-font
+          color second-col
+        h3
+          font-family uglyqua
+          font-size fly-font
+          line-height small-font
+          margin small-font 0
+          color second-col
+        h4
+          font-family uglyqua
+          font-size fly-font
+          line-height small-font
+          color second-col
+        p
+          font-family uglyqua
+          font-size fly-font
+          line-height small-font
+          margin small-font 0
+          color white
+
+    .store_item.landscape
+      width 470px
+      height 360px
+      img
+        width 100%
+
+    .store_item.portrait
+      height 360px
+      width 230px
+      img
+        height 100%
+
+    .store_item:hover
+      .copyblock
+        transition all 0.5s ease-in
+        left 0
+
+    .title-block
+      width 100% !important
+      background-image url(/images/DrWTitle-01.png)
+      background-repeat no-repeat
+      background-size auto 70% 
+      background-position top center
+
+      img
+        position relative
+        width 100%
+        margin auto auto
+
+.wrapper:after
+  clearfix()
+
+#search-block
+  position fixed
+  display block
+  width 100%
+  top 0
+  padding small-font
+  background-color rgba(0, 0, 0, 0.8)
+
+  #sort, #search
+    position relative
+    float left
+    display inline
+    width 40%
+    min-width 40%
+    margin 0 0 0 0
+    clear none
+    select
+      width 240px
+      clear none
+      color second-col
+      margin 0px
+      margin 0 0 0 0
+      height 40px
+      border-radius 5px 0 0 5px
+      border-color prime-col
+    input[type='search']
+      width 240px
+      clear none
+      height 40px
+      margin 0 0 0 0
+      border-radius 5px 0 0 5px
+      border-color prime-col
+      color second-col
+    input[type='submit']
+      display inline-block
+      clear none
+      float none
+      height 40px
+      margin 0 -1px 0 0
+      text-shadow none
+      cursor pointer
+      border-radius 0 5px 5px 0
+      border-color prime-col
+      background-color second-col*0.2
+      font-family uglyqua !important
+      color second-col
+    input[value='keyword']
+      //border-radius 0 0 0 0 
+      border-radius 0 5px 5px 0 
+    input[value='location']
+      border-radius 0 5px 5px 0 
+
+  #search
+    width 60%
+    min-width 60%
+    float right
+    text-align right
+
+  #sort
+    width auto
+
+#search-block:after
+  content ''
+  display block
+  clear both
+
+#login
+  position absolute
+  top 0px
+  right 10px
+  z-index 2
+
+.browser-msg, .alert
+  position absolute
+  font fly-font/fly-font 'Helvetica Neue', HelveticaNeue, Helvetica, sans-serif
+  top -2px
+  left 20%
+  width 60%
+  padding 10px
+  text-align left
+  letter-spacing 1px
+  color white
+  text-transform uppercase
+  border third-col solid thin
+  border-radius 0px 0px 5px 5px
+  padding 10px 10px
+  z-index 600
+
+.alert:after
+  content '\274C'
+  font large-font/20pt entypo
+  position absolute
+  right 10px
+  top 0px
+  cursor pointer
+
+.alert-info:after 
+  color alert-info-col*2
+
+.alert-error:after 
+  color alert-error-col*3
+
+.alert-error
+  background-linear-gradient(top, (alert-error-col*1.2), 20%, alert-error-col, 80%)
+  border-color alert-error-col
+
+.alert-info
+  background-linear-gradient(top, (alert-info-col*1.2), 20%, alert-info-col, 80%)
+  border-color alert-info-col
+
+#footer
+  position fixed
+  bottom 0
+  color second-col
+  width 100%
+  padding 1em
+  section
+    width 100%
+    p
+      font fly-font/small-line font-med
+      text-transform uppercase
+      .strong
+        font-family font-bold
+
+#footer:after
+  clearfix()
+
+#register, #signin
+  display inline
+  padding 5px 
+  width 50%
+  float left

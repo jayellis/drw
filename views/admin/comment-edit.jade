@@ -1,0 +1,20 @@
+extends ../layout-admin
+block head
+block content
+  h1= title
+  a(href='/admin/users/' + comment.user).btn Commenter's details
+  p &nbsp;
+  form(action='/admin/comment/' + comment._id, method='POST')
+    h2= comment.comment
+    p= comment.comment_date
+    each action in comment.action
+      p #{action.action} by user: 
+        a(href='/admin/users/' + comment.user)= action.user + ' ' +action.actioned
+    input(type='hidden', name='_method', value='PUT')
+    select(name='comment[state]')
+      option(value='flagged', selected= ( comment.state === 'flagged' )) Flagged
+      option(value='hidden', selected= ( comment.state === 'hidden' )) Hidden
+      option(value='visible', selected= ( comment.state === 'visible' )) Visible
+    input(type='submit', value='Change comment\'s state')
+
+block scripts

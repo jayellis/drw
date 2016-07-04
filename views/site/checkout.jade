@@ -1,0 +1,40 @@
+extends ../layout
+
+block head
+block content
+  .wrapper
+    h1= title
+    form(action='/checkout/barclaycard', method='POST')#checkout-form
+      fieldset
+        h2 Payment address
+        include ../partials/address_fields
+        if user.address === {}
+        input(type='checkbox', name='save-address') 
+        label Save Address
+      fieldset
+        h2 delivery address
+        include ../partials/delivery_fields
+        p.fly Leave blank if your delivery address is the same as your payment address.
+      #checkout-cart
+        h2 Your order
+        table
+          tr
+            th Item
+            th Price
+            th
+            th
+            th Delivery option
+          each item in cart
+            tr
+              td= item.title 
+              td= item.formatedPrice 
+              td 
+                each delivery, index in item.delivery
+                  td
+                    input(type='checkbox', name='delivery', value= delivery.cost, checked= ( index == 0 ) ) 
+                  td
+                    label= delivery.option + ': ' + delivery.formatedPrice
+          
+        input(type='submit', value='Checkout')
+  include ../partials/header-long
+block scripts

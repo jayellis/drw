@@ -1,0 +1,207 @@
+@import base
+
+form
+  input,
+  select,
+  textarea
+    background-color second-col
+    border-radius(5px)
+
+form:after
+  clearfix()
+
+body
+  font-family 'HelveticaNeue-light', 'Helvetica Neue light', Helvetica, sans-serif
+  margin 20px 20px 20px 250px
+
+h1
+  font-size 30px
+  margin-bottom 20px
+  font-weight 900
+
+h2
+  font-size 20px
+  margin-bottom 20px
+  font-weight 900
+
+a
+  color inherit
+  text-decoration none
+
+#sortableTable
+  width 80%
+  margin auto
+
+#sortable
+  list-style-type none
+  margin 0
+  padding 0 
+  li
+    margin 0 3px 3px 0px
+    padding 0
+    font-size: 1.4em 
+    span
+      position absolute
+      margin-left -1.3em
+.fly
+  font-weight bold
+  font-size 14px
+  color grey
+
+.gallery
+  position relative
+  list-style none
+  left -40px
+  padding 0 10% 0 10%
+  -webkit-box-sizing: border-box; 
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  li
+    position relative
+    width 150px
+    height 150px
+    overflow hidden
+    .btn
+      position absolute
+      left 10px
+      bottom -10px
+    img
+      min-width 100%
+      min-height 100%
+
+.btn, button, input[type=button], input[type=submit]
+  color prime-col 
+  text-shadow 0 1px 1px third-col*1.3
+
+input[type=submit] + input[type=submit]
+  float left
+  clear none
+
+.destroy
+  background -webkit-gradient(linear, left top, left bottom, from(#D64937*1.6), to(#D64937))
+  color white
+  text-shadow 0 -1px -1px #D64937*0.5
+  border solid thin #D64937 
+
+.browser-msg, .alert
+  position relative
+  font-size fly-font
+  top -2px
+  left 20%
+  width 60%
+  text-align left
+  letter-spacing 1px
+  color white
+  text-transform uppercase
+  border third-col solid thin
+  border-radius 0px 0px 5px 5px
+  padding 10px 5px
+  margin-bottom 20px
+
+.alert:after
+  content '\274C'
+  font large-font/20pt entypo
+  position absolute
+  right 10px
+  top 0px
+  cursor pointer
+
+.alert-info:after 
+  color alert-info-col*2
+
+.alert-error:after 
+  color alert-error-col*3
+
+.alert-error
+  background-linear-gradient(top, (alert-error-col*1.2), 20%, alert-error-col, 80%)
+  border-color alert-error-col
+
+.alert-info
+  background-linear-gradient(top, (alert-info-col*1.2), 20%, alert-info-col, 80%)
+  border-color alert-info-col
+
+#nav
+  position absolute
+  left 0
+  top 0
+  width 200px
+  background-color second-col
+  color prime-col
+  height 100%
+  ul
+    li
+      padding 30px
+      text-transform uppercase
+      border-bottom thin solid third-col
+  ul + .btn
+    display inline-block
+    margin-left 20px
+    margin-top 50px
+    clear both
+
+
+fieldset
+  padding 10px
+
+.image-list
+  margin 20px 0
+  .image-wrapper
+    margin 2px
+    width 10%
+    overflow hidden
+    background-color black
+
+
+.image-list:after
+  content ' '
+  height 0
+  clear both
+  display block
+
+#sortable
+  .issueList
+    display block
+    position relative
+    background-color third-col
+    border-left #aaa solid 45px
+    padding 10px 10px 20px 10px
+    label
+      margin 0px 0 30px 10px
+      text-transform uppercase
+    p
+      font-weight 400
+    span
+      top 15px
+      left 0px
+      background-color third-col
+    input[type='checkbox']
+      float right
+
+.block
+  display block
+  float left
+  width 200px
+  height 150px
+  margin 5px
+
+.control-panel
+  section
+    background-color prime-col
+    padding 10px
+    width 33%
+    dl
+      dt
+        padding 10px
+        background-color prime-col*0.8
+      dd
+        font-size fly-font
+        background-color white
+        padding 5px
+
+#reservation
+  border alert-error-col solid thin
+  padding 0.2em
+  background-clip content-box
+  background-color #edd
+  h2, p
+    margin 0.4em

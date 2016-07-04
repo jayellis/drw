@@ -1,0 +1,36 @@
+header
+  a(href='/')
+    #long-header
+  #topnav
+    nav
+      ul
+        li.menu menu
+          ul
+            each category in categoryList
+              li
+                a(href='/category/' + category).category= category
+            li 
+              a(href='/about') about
+            li 
+              a(href='/contact') contact
+        if !sessionInfo.fname
+          li 
+            a(href='/auth') sign in
+        if sessionInfo.level == 'admin'
+          li 
+            a(href='/admin')= sessionInfo.fname
+            | &nbsp;&nbsp;
+            a(href='/auth').destroy Log out
+        if sessionInfo.level == 'user'
+          li 
+            a(href='/user')= sessionInfo.fname
+            | &nbsp;&nbsp;
+            a(href='/auth').destroy Log out
+        li#cart
+          p
+            span().cart_total 0
+
+          form(action='/checkout', method='POST')
+            ul.cart_items
+            input(type='submit', value='Pay')
+            a(href='').clear clear

@@ -1,0 +1,12 @@
+#search-block
+  form(action='/', method='GET')#sort
+    select(name='sort')#sort-item
+      option(value='recent', selected=(sort == 'recent' || '')) View by most recent
+      option(value='oldest', selected=(sort == 'oldest')) View by oldest
+      option(value='highest', selected=(sort == 'highest')) View by price ascending
+      option(value='lowest', selected=(sort == 'lowest')) View by price descending
+    input(type='submit', value='Sort')
+  form(action='/', method='GET')#search
+    input(type='search', name='search', placeholder='search', value= search || '')#query
+    input(type='submit', name='by', value='keyword')
+

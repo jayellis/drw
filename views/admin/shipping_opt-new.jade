@@ -1,0 +1,11 @@
+extends ../layout-admin
+
+block head
+block content
+  h1= title
+  form(action='/admin/shipping/option/' + shipping.id, method='POST')
+    include ../partials/shippingOption_fields
+    input(type='submit', value='Add shipping option')
+block scripts
+
+

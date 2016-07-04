@@ -1,0 +1,15 @@
+extends ../layout-admin
+
+block head
+  link(rel='stylesheet', href='#{assetUrl}/stylesheets/Aristo-jQuery-UI-Theme/css/Aristo/Aristo.css')
+  script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js')
+block content
+  h1= title
+  form(action='/admin/media/' + media.id, method='POST')
+    input(type='hidden', name='_method', value='PUT')
+    include ../partials/media_fields
+    input(type='submit', value='Edit media')
+block scripts
+  script(type='text/javascript', src='#{assetUrl}/javascripts/sortable_init.js')
+
+

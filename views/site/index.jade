@@ -1,0 +1,48 @@
+extends ../layout
+block head
+  script(src='javascripts/jquery.autocomplete.min.js')
+
+block content
+  .wrapper
+    #catelogue
+      div().store_item.landscape.title-block
+      each item in items
+        div(class= 'store_item ' + item._media[0].orientation )
+          img( src= 'http://drwagner.s3.amazonaws.com/images/display/' + item._media[0].filename, alt= item.title )
+          form.copyblock.cart_form
+            input(type='hidden', name='id', value= 'cart-' + item._id)
+            input(type='hidden', name='title', value= item.title)
+            input(type='hidden', name='price', value= item.price)
+            input(type='hidden', name='state', value= item.state)
+            h2= item.title
+            if item.slug
+              h3= item.slug
+            p!= item.text
+            p.price= item.formatedPrice
+            | &nbsp; 
+            if item.state == 'reserve'
+              input(type='submit', data-action='reserve', value='Reserve item')
+            else if item.price == 0 || item.price == 'POA'
+              input(type='submit', data-action='application', value='Request price')
+            else
+              input(type='submit', data-action='sale', value='Add to cart')
+            ul.keywords
+              each word in item.key_words
+                li
+                  a(href='/?search='+ word +'&by=keyword')= word
+
+  include ../partials/header
+  include partials/search_block
+  include ../partials/footer
+block scripts
+  script(type='text/javascript', src='#{assetUrl}/javascripts/init_masonary.js')
+  script.
+    (function($){
+      var a
+        , options={
+          serviceUrl: '/keywords',
+          minChars: '2'
+        };
+      a = $('#query').autocomplete(options);
+    })(jQuery);
+    

@@ -1,0 +1,43 @@
+extends ../layout-admin
+
+block head
+  link(rel='stylesheet', href='#{assetUrl}/stylesheets/Aristo-jQuery-UI-Theme/css/Aristo/Aristo.css')
+  link(rel='stylesheet', href='#{assetUrl}/stylesheets/jTPS.css')
+  script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js')
+  script(type='text/javascript', src='#{assetUrl}/javascripts/jTPS.js')
+block content
+  h1= title
+  a(href='/admin/items/new').btn New item
+  table()#sortableTable
+     thead
+        tr
+           th(sort='image') Thumbs
+           th(sort='title') Title
+           th(sort='slug') Slug
+           th(sort='state') State
+     tbody
+        each item in items
+          - var imgFile = ''
+          if item._media[0]
+            - imgFile = '<img style="height:50px" src="http://drwagner.s3.amazonaws.com/images/thumbs/'+item._media[0].filename+'"/>'
+          tr
+            td
+              a(href='/admin/items/' + item._id)!= imgFile
+            td
+              a(href='/admin/items/' + item._id)= item.title
+            td
+              a(href='/admin/items/' + item._id)= item.slug
+            td
+              a(href='/admin/items/' + item._id)= item.state
+     tfoot().nav
+        tr
+          td(colspan=4)
+            .pagination
+            .paginationTitle Page
+            .selectPerPage
+            .status
+
+block scripts
+  script(type='text/javascript', src='#{assetUrl}/javascripts/jtps_init.js')
+
+
