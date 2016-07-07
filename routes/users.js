@@ -33,8 +33,13 @@ exports.createUser = function( req, res ) {
   };
 
   function saveUser() {
-    var user = new User( req.body.user )
+    var user = new User()
       , msg = '';
+    user.fname = req.body.user.fname,
+    user.lname = req.body.user.lname,
+    user.email = req.body.user.email,
+    user.password = req.body.user.password,
+    user.third_party = req.body.user.third_party
     user.save(function(err) {
       if(err) return userSaveFailed( err );
 
@@ -150,20 +155,7 @@ exports.deleteUser = function(req, res, next) {
 
 // control Panel {{{1
 exports.control = function( req, res, next ) {
-  User.findById( req.user._id, function( err, user ) {
-    if( err ) return next( err );
-    Article.find( { _author: req.user._id }, function( err, articles ) {
-      if( err ) return next( err );
-      Article.find({ 'comments.user': req.user._id }, {'_id': 1, 'title': 1 }, function( err, comments ) {
-        res.render('site/control', {
-          title: 'Control Panel',
-          user: user,
-          articles: articles || {}, 
-          comments: comments
-        });
-      });
-    });
-  });
+  res.send('My Emporium');
 };
 // Validate {{{1
 exports.validate = function( req, res, next ) {

@@ -6,7 +6,7 @@ form(action='/register', method='POST')#register
   input(type='password', name='user[password]', value= user.password || '', placeholder='Password')
   input(type='password', name='password',  placeholder='Verify Password')
   input(type='checkbox', name='user[third_party]', value='true', checked= true)
-  label Get Stinger updates, news, surveys & offers
+  label Get updates, news, surveys & offers
   input(type='submit', value='Register')
 form( action='/auth', method='POST' )#signin
   h3 Sign In
