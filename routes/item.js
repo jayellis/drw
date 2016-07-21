@@ -33,6 +33,7 @@ exports.createItem = function( req, res, next ) {
   item.key_words = req.body.item.key_words.split(',');
 
   function saveItem() {
+    item.category = ( req.body.categoryalt != '' )? req.body.categoryalt: req.body.category;
     item.save(function( err ) {
       if( err ) return saveFailed( err );
       res.redirect('/admin/items/' + item._id);
@@ -79,6 +80,8 @@ exports.edit = function( req, res, next ) {
 
 
     function saveItem() {
+      console.log(req.body);
+      item.category = ( req.body.categoryalt != '' )? req.body.categoryalt: req.body.category;
       item.key_words = req.body.item.key_words.split(',');
       if( newState !== 'reserved' && oldState == 'reserved' ) item._reservation = undefined;
 

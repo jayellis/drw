@@ -12,6 +12,7 @@ block content
     input(type='hidden', name='_method', value='PUT')
     include ../partials/user_fields
     input(type='password', name='password', placeholder='Leave clear unless a change of password is required')
+    input(type='text', name='user[telephone]', value= user.telephone || '', placeholder='telephone' disabled= (user.telephone))
     select(name='user[level]')
       option(value='user', selected= (user.level=='user')) User
       option(value='admin', selected= (user.level=='admin')) Admin

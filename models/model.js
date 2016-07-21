@@ -163,19 +163,24 @@ function defineModels(mongoose, fn) {
   });
 
   User.virtual('id')
-    .get(function() {
-      return this._id.toHexString();
-    });
+  .get(function() {
+    return this._id.toHexString();
+  });
+
+  User.virtual('fullName')
+  .get( function() {
+    return this.fname + ' ' + this.lname;
+  });
 
   User.virtual('password')
-    .set(function(password) {
-      if( password != '' ) {
-        this._password = password;
-        this.salt = this.makeSalt();
-        this.hashed_password = this.encryptPassword(password);
-      }
-    })
-    .get(function() { return this.hashed_password; });
+  .set(function(password) {
+    if( password != '' ) {
+      this._password = password;
+      this.salt = this.makeSalt();
+      this.hashed_password = this.encryptPassword(password);
+    }
+  })
+  .get(function() { return this.hashed_password; });
 
   User.method('authenticate', function(plainText) {
     return this.encryptPassword(plainText) === this.hashed_password;

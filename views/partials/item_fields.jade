@@ -1,10 +1,17 @@
-//-select(name='item[category]')
-  //-each category in categoryList
-    //-option( value= category selected= (category==item.category))= category
-input(type='text', name='item[title]', value= item.title || '', placeholder='Title')
-input(type='text', name='item[slug]', value= item.slug || '', placeholder='Slug')
-textarea(name='item[text]', placeholder='Text')= item.text
-input(type='text', name='item[price]', value= item.price || '', placeholder='Price')
-input(type='text', name='item[key_words]', value= item.key_words || '', placeholder='Key words: seperate with a comma')
+fieldset
+  legend Category
+  select(name='item[category]')
+    each category in categoryList
+      option( value= category selected= (category==category._id))= category._id
+  input(type='text', name='categoryalt', placeholder='Additional Categories')
+fieldset
+  legend Details
+  input(type='text', name='item[title]', value= item.title || '', placeholder='Title')
+  input(type='text', name='item[slug]', value= item.slug || '', placeholder='Slug')
+  textarea(name='item[text]', placeholder='Text')= item.text
+  input(type='text', name='item[price]', value= item.price || '', placeholder='Price')
+fieldset
+  legend Key Words
+  input(type='text', name='item[key_words]', value= item.key_words || '', placeholder='Key words: seperate with a comma')
 if item.reservation
 

@@ -3,6 +3,7 @@ form(action='/register', method='POST')#register
   input(type='text', name='user[fname]', value= user.fname || '', placeholder='First Name')
   input(type='text', name='user[lname]', value= user.lname || '', placeholder='Last Name')
   input(type='email', name='user[email]', value= user.email || '', placeholder='email' disabled= (user.email))
+  input(type='telephone', name='user[telephone]', value= user.telephone || '', placeholder='telephone' disabled= (user.telephone))
   input(type='password', name='user[password]', value= user.password || '', placeholder='Password')
   input(type='password', name='password',  placeholder='Verify Password')
   input(type='checkbox', name='user[third_party]', value='true', checked= true)

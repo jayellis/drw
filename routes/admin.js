@@ -24,8 +24,13 @@ function calc(n1,n2)
 
 //Index {{{1
 exports.index = function( req, res ) {
-   res.render('admin/index', {
-      title: "Welcome " + req.user.displayName
+  Item.find({ state: 'reserved' })
+    .populate('_reservation')
+    .exec( function( err, items ) {
+    res.render('admin/index', {
+      title: "Welcome " + req.user.displayName,
+      items: items
+    });
   });
 };
 

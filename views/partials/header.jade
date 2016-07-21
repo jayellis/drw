@@ -4,9 +4,9 @@ header
       ul
         li.menu menu
           ul
-            each category in categoryList
+            each category in categoryListPublish
               li
-                a(href='/category/' + category).category= category
+                a(href='/category/' + category._id).category= category._id + ' (' + category.total + ')'
             li 
               a(href='/about') about
             li 
@@ -24,11 +24,11 @@ header
             a(href='/user')= sessionInfo.fname
             | &nbsp;&nbsp;
             a(href='/auth').destroy Log out
-        li#cart
-          p
-            span().cart_total 0
+        //li#cart
+          //p
+            //span().cart_total 0
 
-          form(action='/checkout', method='POST')
-            ul.cart_items
-            input(type='submit', value='Pay')
-            a(href='').clear clear
+          //form(action='/checkout', method='POST')
+            //ul.cart_items
+            //input(type='submit', value='Pay')
+            //a(href='').clear clear

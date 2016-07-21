@@ -33,11 +33,11 @@ block content
     include ../partials/item_fields
     select(name='item[state]')
       option(value='draft', selected= (item.state == 'draft' || '')) Draft
-      option(value='sale', selected= (item.state == 'sale')) For Sale
+      //option(value='sale', selected= (item.state == 'sale')) For Sale
       option(value='reserve', selected= (item.state == 'reserve')) To Reserve
-      option(value='archive', selected= (item.state == 'archive')) For Sale
-      option(value='sold', selected= (item.state == 'sold')) Sold
+      //option(value='sold', selected= (item.state == 'sold')) Sold
       option(value='reserved', selected= (item.state == 'reserved')) Reserved
+      option(value='archive', selected= (item.state == 'archive')) For Sale
     fieldset
       legend delivery
       ul

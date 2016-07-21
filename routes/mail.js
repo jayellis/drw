@@ -40,7 +40,7 @@ module.exports = {
   //seviceMsg {{{1
   serviceMsg: function(err, currentUser) {
     this.send('service.jade', { 
-      to: [ currentUser.email, 'jay@thestinger.org.uk'],
+      to: [ currentUser.email, 'jay@dec0de.com'],
       from: from,
       subject: 'Error Report' 
     }, { err: err, currentUser: currentUser });

@@ -1,7 +1,37 @@
 extends ../layout-admin
 
+block head
+  link(rel='stylesheet', href='#{assetUrl}/stylesheets/Aristo-jQuery-UI-Theme/css/Aristo/Aristo.css')
+  link(rel='stylesheet', href='#{assetUrl}/stylesheets/jTPS.css')
+  script(type='text/javascript', src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js')
+  script(type='text/javascript', src='#{assetUrl}/javascripts/jTPS.js')
 block content
   h1= title
-  .control-panel
+  h2 Reserved Items
+  table()#sortableTable
+     thead
+        tr
+           th(sort='image') Name
+           th(sort='title') Email
+           th(sort='phone') Phone
+           th(sort='slug') Item
+     tbody
+        each item in items
+          tr
+            td
+              a(href='/admin/items/' + item._id)!= item._reservation.fullName
+            td
+              a(href='/admin/items/' + item._id)= item._reservation.email
+            td
+              a(href='/admin/items/' + item._id)= item._reservation.phone
+            td
+              a(href='/admin/items/' + item._id)= item.title
+     tfoot().nav
+        tr
+          td(colspan=4)
+            .pagination
+            .paginationTitle Page
+            .selectPerPage
+            .status
 block scripts
 

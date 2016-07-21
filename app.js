@@ -136,14 +136,25 @@ function sessionInfo(req, res, next) {
   next();
 };
 
+function categoryListPublish( req, res, next ) {
+  Item.aggregate([
+      { $match: { state: 'publish', state: 'reserve' } },
+      { $group: { _id: '$category', total: { $sum: 1 } } }
+  ], function( err, list ) {
+    if( err ) return next( err );
+    res.locals.categoryListPublish = list;
+    next();
+  })
+};
+
 function categoryList( req, res, next ) {
-  var list = [
-    'lighting',
-    'bathroom',
-    'living room'
-  ];
-  res.locals.categoryList = list;
-  next();
+  Item.aggregate([
+      { $group: { _id: '$category', total: { $sum: 1 } } }
+  ], function( err, list ) {
+    if( err ) return next( err );
+    res.locals.categoryList = list || [];
+    next();
+  })
 };
 
 function getEnvironment( req, res, next ) {
@@ -253,7 +264,7 @@ models.defineModels(mongoose, function() {
 });
 
 //Routes {{{1
-app.all('/*', categoryList, sessionInfo, flash );
+app.all('/*', categoryListPublish, sessionInfo, flash );
 app.get( '/', site.index );
 app.get( '/category/:category', site.index );
 app.get( '/item/:id', site.item );
@@ -261,7 +272,7 @@ app.get( '/keywords', site.getKeywords );
 app.get( '/contact', site.contact );
 
 // Admin {{{2
-app.all('/admin*', sessionInfo, ensureAdmin());
+app.all('/admin*', categoryList, sessionInfo, ensureAdmin());
 
 app.get('/admin', admin.index);
 app.get('/admin/media', admin.listMedia);
